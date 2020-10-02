@@ -1,18 +1,28 @@
-# ProfilePlace
+# profile.place
+> **Frontend and API monorepo for [profile.place](https://profile.place), made in Elixir**
 
-To start your Phoenix server:
+## Installation
+### Requirements
+- Elixir/Erlang
+- NMake
+- MongoDB v3 or v4
+- Redis v5+
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server`
+### Process (Locally)
+- [Fork](https://github.com/profile-place/website/fork) the repository
+- Clone the repository (**`git clone https://github.com/$USER/website`**, replace `$USER` with your username)
+- Move to the directory and run `mix deps.get` to get the dependency cache
+  - If you get a nmake error, make sure you set the `MAKE` environment variable!
+- Run `DB_URL="mongodb://localhost:27017/profile-place" iex -S mix phx.server`
+- Open the tab [here](http://localhost:4000)
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+### Process (Docker)
+:sparkles: ***coming soon?*** :sparkles:
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Maintainers
+- [Cyber28](https://github.com/Cyber28)
+- [August](https://augu.dev)
+- [ravy](https://ravy.dev)
 
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+## License
+**profile.place** is released under the **GPL-3** License, read [here](/LICENSE) for more information!
