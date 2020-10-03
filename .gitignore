@@ -27,6 +27,6 @@ profile_place-*.tar
 # this depending on your deployment strategy.
 /priv/static/
 
-run.sh
 test/
 .elixir_ls
+config/secret.exs

@@ -13,7 +13,8 @@ defmodule ProfilePlace.Application do
       {Phoenix.PubSub, name: ProfilePlace.PubSub},
       # Start the Endpoint (http/https)
       ProfilePlaceWeb.Endpoint,
-      {Mongo, [name: :db, database: "profileplace", url: System.get_env("DB_URL")]},
+      {Mongo,
+       [name: :db, database: "profileplace", url: Application.get_env(:profile_place, :db_url)]},
       {Redix, [host: "localhost", port: 6379, name: :redis]}
     ]
 
