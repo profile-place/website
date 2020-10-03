@@ -31,11 +31,7 @@ defmodule ProfilePlaceWeb.ApiController do
     email = email |> Base.decode64!() |> String.downcase(:ascii)
     password = pass |> Base.decode64!()
 
-    user =
-      case Mongo.find_one(:db, "user", %{email: email}) do
-        nil -> nil
-        x -> Map.new(x, fn {k, v} -> {String.to_atom(k), v} end)
-      end
+    user = ProfilePlace.Util.find_one("user", %{email: email})
 
     cond do
       !user ->
