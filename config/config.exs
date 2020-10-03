@@ -25,7 +25,7 @@ config :phoenix, :json_library, Jason
 
 config :snowflake,
   nodes: ["127.0.0.1"],
-  epoch: 1_577_836_800
+  epoch: 1_577_836_800_000
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

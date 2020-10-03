@@ -23,6 +23,7 @@ defmodule ProfilePlaceWeb.Router do
     pipe_through :api
 
     post "/signup", ApiController, :signup
+    post "/login", ApiController, :login
   end
 
   # Other scopes may use custom stacks.
