@@ -7,7 +7,7 @@ defmodule ProfilePlaceWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_profile_place_key",
-    signing_salt: "XumuSuoP"
+    signing_salt: "UnAEICMI"
   ]
 
   socket "/socket", ProfilePlaceWeb.UserSocket,

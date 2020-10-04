@@ -10,10 +10,10 @@ use Mix.Config
 # Configures the endpoint
 config :profile_place, ProfilePlaceWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "H5TTwht9FrL6CdZMUbBXz/mtQOh6AYKitV7CShsWSS77Rn6+vS1CHDulMtR1KJ1q",
+  secret_key_base: "7ozIfPKRgOELU+HOyg0vuhEr6ZMh0gdnySmE1sZ+G/7xSrwfr5lwkXlMTIOawyPC",
   render_errors: [view: ProfilePlaceWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: ProfilePlace.PubSub,
-  live_view: [signing_salt: "ee5s2qo6"]
+  live_view: [signing_salt: "wJ2RsDFD"]
 
 # Configures Elixir's Logger
 config :logger, :console,
