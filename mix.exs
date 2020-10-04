@@ -20,7 +20,7 @@ defmodule ProfilePlace.MixProject do
   def application do
     [
       mod: {ProfilePlace.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :snowflake]
     ]
   end
 
