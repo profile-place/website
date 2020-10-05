@@ -7,10 +7,6 @@
 # General application configuration
 use Mix.Config
 
-# Ecto repos
-config :profile_place,
-  ecto_repos: [ProfilePlace.Repo]
-
 # Configures the endpoint
 config :profile_place, ProfilePlaceWeb.Endpoint,
   url: [host: "localhost"],
@@ -18,16 +14,6 @@ config :profile_place, ProfilePlaceWeb.Endpoint,
   render_errors: [view: ProfilePlaceWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: ProfilePlace.PubSub,
   live_view: [signing_salt: "wJ2RsDFD"]
-
-# Phauxth authentication configuration
-config :phauxth,
-  user_context: ProfilePlace.Accounts,
-  crypto_module: Argon2,
-  token_module: ProfilePlaceWeb.Auth.Token
-
-# Mailer configuration
-config :profile_place, ProfilePlaceWeb.Mailer,
-  adapter: Bamboo.LocalAdapter
 
 # Configures Elixir's Logger
 config :logger, :console,

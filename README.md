@@ -3,10 +3,9 @@
 
 ## Installation
 ### Requirements
-- Elixir
+- Elixir/Erlang
 - NMake
-- PostgreSQL v12.4+
-- Node v6.14.8+
+- MongoDB v3 or v4
 - Redis v5+
 
 ### Process (Locally)
@@ -19,6 +18,16 @@
 
 ### Process (Docker)
 :sparkles: ***coming soon?*** :sparkles:
+
+### Configuration
+- Create a `config/secret.exs` file
+- Add the following code, and fill the values
+```elixir
+import Config
+
+config :profile_place,
+  db_url:
+```
 
 ## Maintainers
 - [Cyber28](https://github.com/Cyber28)
