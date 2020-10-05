@@ -19,6 +19,16 @@ config :profile_place, ProfilePlaceWeb.Endpoint,
   pubsub_server: ProfilePlace.PubSub,
   live_view: [signing_salt: "wJ2RsDFD"]
 
+# Phauxth authentication configuration
+config :phauxth,
+  user_context: ProfilePlace.Accounts,
+  crypto_module: Argon2,
+  token_module: ProfilePlaceWeb.Auth.Token
+
+# Mailer configuration
+config :profile_place, ProfilePlaceWeb.Mailer,
+  adapter: Bamboo.LocalAdapter
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
