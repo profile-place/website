@@ -4,29 +4,22 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Phoenix Framework with Phauxth authentication</title>
+    <title>ProfilePlace · Phoenix Framework</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
     <header>
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li><%= link "Home", to: Routes.page_path(@conn, :index) %></li>
-            <%= if @current_user do %>
-              <li><%= link "Users", to: Routes.user_path(@conn, :index) %></li>
-              <li><%= link @current_user.email, to: Routes.user_path(@conn, :show, @current_user) %></li>
-              <li><%= link "Logout", to: Routes.session_path(@conn, :delete, current_session(@conn)), method: :delete %></li>
-            <% else %>
-              <li><%= link "New user", to: Routes.user_path(@conn, :new) %></li>
-              <li><%= link "Login", to: Routes.session_path(@conn, :new) %></li>
-            <% end %>
+            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
             <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
               <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
             <% end %>
           </ul>
         </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
+        <a href="https://phoenixframework.org/" class="phx-logo">
           <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
         </a>
       </section>
@@ -36,6 +29,5 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
     </main>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

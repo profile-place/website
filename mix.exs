@@ -40,16 +40,12 @@ defmodule ProfilePlace.MixProject do
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:jason, "~> 1.0"},
-      {:phauxth, "~> 2.3"},
-      {:argon2_elixir, "~> 2.0"},
-      {:bamboo, "~> 1.3"},
       {:plug_cowboy, "~> 2.0"},
+      {:mongodb, "~> 0.5.1"},
       {:snowflake, "~> 1.0.0"},
       {:redix, ">= 0.0.0"},
-      {:dotenv, "~> 3.0.0"},
-      {:phoenix_ecto, "~> 4.1"},
-      {:ecto_sql, "~> 3.4"},
-      {:postgrex, ">= 0.0.0"}
+      {:argon2_elixir, "~> 2.3.0"},
+      {:dotenv, "~> 3.0.0"}
     ]
   end
 
@@ -61,10 +57,8 @@ defmodule ProfilePlace.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "cmd npm ci --prefix assets"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      setup: ["deps.get", "cmd npm ci --prefix assets"],
+      startthisfuckingshit: ["phx.server"]
     ]
   end
 end
