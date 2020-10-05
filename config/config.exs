@@ -7,6 +7,10 @@
 # General application configuration
 use Mix.Config
 
+# Ecto repos
+config :profile_place,
+  ecto_repos: [ProfilePlace.Repo]
+
 # Configures the endpoint
 config :profile_place, ProfilePlaceWeb.Endpoint,
   url: [host: "localhost"],

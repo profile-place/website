@@ -13,10 +13,10 @@ defmodule ProfilePlace.Application do
       {Phoenix.PubSub, name: ProfilePlace.PubSub},
       # Start the Endpoint (http/https)
       ProfilePlaceWeb.Endpoint,
+      # Start the Ecto repo
+      ProfilePlace.Repo,
       # Start a worker by calling: ProfilePlace.Worker.start_link(arg)
       # {ProfilePlace.Worker, arg}
-      {Mongo,
-       [name: :db, database: "profileplace", url: System.get_env("DB_URL")]},
       {Redix, [host: "localhost", port: 6379, name: :redis]}
     ]
 
