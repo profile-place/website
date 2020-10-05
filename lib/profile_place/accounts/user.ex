@@ -12,6 +12,7 @@ defmodule ProfilePlace.Accounts.User do
     confirmed_at: DateTime.t() | nil,
     reset_sent_at: DateTime.t() | nil,
     sessions: [Session.t()] | %Ecto.Association.NotLoaded{},
+    snowflake: Integer.t(),
     inserted_at: DateTime.t(),
     updated_at: DateTime.t()
   }
@@ -23,6 +24,7 @@ defmodule ProfilePlace.Accounts.User do
     field :confirmed_at, :utc_datetime
     field :reset_sent_at, :utc_datetime
     has_many :sessions, Session, on_delete: :delete_all
+    field :snowflake, :integer
 
     timestamps()
   end
@@ -41,6 +43,7 @@ defmodule ProfilePlace.Accounts.User do
     |> unique_email
     |> validate_password(:password)
     |> put_pass_hash
+    |> put_new_snowflake
   end
 
   def confirm_changeset(%__MODULE__{} = user, confirmed_at) do
@@ -84,12 +87,17 @@ defmodule ProfilePlace.Accounts.User do
   end
 
   # If you are using Bcrypt or Pbkdf2, change Argon2 to Bcrypt or Pbkdf2
-  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes:
+  defp put_pass_hash(%Ecto.Changeset{changes:
       %{password: password}} = changeset) do
     change(changeset, Argon2.add_hash(password))
   end
 
-  defp put_pass_hash(changeset), do: changeset
+  defp put_new_snowflake(%Ecto.Changeset{} = changeset) do
+    changeset
+    |> change(%{snowflake: Snowflake.next_id |> elem(1)})
+    |> unique_constraint(:snowflake)
+    |> IO.inspect(label: "Put new snowflake")
+  end
 
   defp strong_password?(password) when byte_size(password) > 7 do
     {:ok, password}
