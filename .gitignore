@@ -29,5 +29,5 @@ profile_place-*.tar
 
 test/
 .elixir_ls
-config/secret.exs
 assets/node_modules
+.env

@@ -20,7 +20,7 @@ defmodule ProfilePlace.MixProject do
   def application do
     [
       mod: {ProfilePlace.Application, []},
-      extra_applications: [:logger, :runtime_tools, :snowflake]
+      extra_applications: [:logger, :runtime_tools, :snowflake, :dotenv]
     ]
   end
 
@@ -44,7 +44,8 @@ defmodule ProfilePlace.MixProject do
       {:mongodb, "~> 0.5.1"},
       {:snowflake, "~> 1.0.0"},
       {:redix, ">= 0.0.0"},
-      {:argon2_elixir, "~> 2.3.0"}
+      {:argon2_elixir, "~> 2.3.0"},
+      {:dotenv, "~> 3.0.0"}
     ]
   end
 

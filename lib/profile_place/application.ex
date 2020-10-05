@@ -16,7 +16,7 @@ defmodule ProfilePlace.Application do
       # Start a worker by calling: ProfilePlace.Worker.start_link(arg)
       # {ProfilePlace.Worker, arg}
       {Mongo,
-       [name: :db, database: "profileplace", url: Application.get_env(:profile_place, :db_url)]},
+       [name: :db, database: "profileplace", url: System.get_env("DB_URL")]},
       {Redix, [host: "localhost", port: 6379, name: :redis]}
     ]
 
