@@ -96,7 +96,6 @@ defmodule ProfilePlace.Accounts.User do
     changeset
     |> change(%{snowflake: Snowflake.next_id |> elem(1)})
     |> unique_constraint(:snowflake)
-    |> IO.inspect(label: "Put new snowflake")
   end
 
   defp strong_password?(password) when byte_size(password) > 7 do
