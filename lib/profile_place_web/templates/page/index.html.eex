@@ -1,32 +1,37 @@
-<section class="container">
-  <p>
-  And here I would like to drone on and on and on about how wonderful Phauxth is,
-  but, ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh, it's getting rather late,
-  ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh, and I just can't seem to,
-  ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh, keep Zzzzzzzz
-  </p>
+<section class="phx-hero">
+  <h1>Welcome to Phoenix!</h1>
+  <p>Peace-of-mind from prototype to production</p>
 </section>
 
 <section class="row">
   <article class="column">
-    <h2>Phauxth authentication</h2>
+    <h2>Resources</h2>
     <ul>
       <li>
-        <a href="https://hexdocs.pm/phauxth">Docs</a>
+        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
       </li>
       <li>
-        <a href="https://github.com/riverrun/phauxth">Source</a>
+        <a href="https://github.com/phoenixframework/phoenix">Source</a>
+      </li>
+      <li>
+        <a href="https://github.com/phoenixframework/phoenix/blob/v1.5/CHANGELOG.md">v1.5 Changelog</a>
       </li>
     </ul>
   </article>
   <article class="column">
-    <h2>Phoenix web framework</h2>
+    <h2>Help</h2>
     <ul>
       <li>
-        <a href="http://phoenixframework.org/docs/overview">Phoenix guides</a>
+        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
       </li>
       <li>
-        <a href="https://github.com/phoenixframework/phoenix">Phoenix source</a>
+        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
+      </li>
+      <li>
+        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
+      </li>
+      <li>
+        <a href="https://elixir-slackin.herokuapp.com/">Elixir on Slack</a>
       </li>
     </ul>
   </article>

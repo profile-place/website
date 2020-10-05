@@ -17,10 +17,7 @@ defmodule ProfilePlaceWeb.UserController do
   end
 
   def new(conn, _) do
-    changeset =
-      Accounts.change_user(%User{})
-      |> IO.inspect(label: "Changeset during new account")
-
+    changeset = Accounts.change_user(%User{})
     render(conn, "new.html", changeset: changeset)
   end
 
