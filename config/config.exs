@@ -27,6 +27,9 @@ config :snowflake,
   nodes: ["127.0.0.1"],
   epoch: 1_577_836_800_000
 
+config :profile_place,
+  db_url: System.get_env("DB_URL")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
