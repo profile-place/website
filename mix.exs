@@ -45,7 +45,9 @@ defmodule ProfilePlace.MixProject do
       {:snowflake, "~> 1.0.0"},
       {:redix, ">= 0.0.0"},
       {:argon2_elixir, "~> 2.3.0"},
-      {:dotenv, "~> 3.0.0"}
+      {:dotenv, "~> 3.0.0"},
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, ">= 0.0.0"}
     ]
   end
 
