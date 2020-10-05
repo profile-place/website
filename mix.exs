@@ -44,7 +44,6 @@ defmodule ProfilePlace.MixProject do
       {:argon2_elixir, "~> 2.0"},
       {:bamboo, "~> 1.3"},
       {:plug_cowboy, "~> 2.0"},
-      {:mongodb, "~> 0.5.1"},
       {:snowflake, "~> 1.0.0"},
       {:redix, ">= 0.0.0"},
       {:dotenv, "~> 3.0.0"},
