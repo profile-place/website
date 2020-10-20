@@ -13,6 +13,10 @@ defmodule ProfilePlaceWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :require_auth do
+    plug ProfilePlaceWeb.Plugs.AuthenticateUser
+  end
+
   scope "/", ProfilePlaceWeb do
     pipe_through :browser
 
@@ -29,7 +33,7 @@ defmodule ProfilePlaceWeb.Router do
   end
 
   scope "/oauth", ProfilePlaceWeb do
-    pipe_through :browser
+    pipe_through [:browser, :require_auth]
 
     get "/discord", DiscordController, :init
     get "/discord-cb", DiscordController, :callback

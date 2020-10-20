@@ -11,6 +11,6 @@ defmodule ProfilePlaceWeb.PageController do
 
   def profile(conn, _params) do
     # conn = fetch_cookies(conn)
-    render(conn, "profile.html", user: ProfilePlace.get_token_owner(conn.cookies["token"]))
+    render(conn, "profile.html", user: ProfilePlace.Token.get_owner(conn.cookies["token"]))
   end
 end

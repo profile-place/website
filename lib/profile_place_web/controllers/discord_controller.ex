@@ -20,7 +20,7 @@ defmodule ProfilePlaceWeb.DiscordController do
       grant_type: "authorization_code",
       code: code,
       redirect_uri: Application.get_env(:profile_place, :discord_redirect),
-      scope: 'identify connections'
+      scope: "identify connections"
     }
 
     # bang bad, handle errors properly pls thx
@@ -42,7 +42,7 @@ defmodule ProfilePlaceWeb.DiscordController do
 
     user =
       Map.merge(user, %{
-        "_owner" => ProfilePlace.get_token_owner(conn.cookies["token"]),
+        "_owner" => conn.assigns.token_owner,
         "_id" => "discord:#{user["id"]}"
       })
 

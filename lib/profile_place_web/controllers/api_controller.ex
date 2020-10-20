@@ -50,7 +50,7 @@ defmodule ProfilePlaceWeb.ApiController do
           timestamp: :os.system_time(:millisecond) - 1_577_836_800_000
         }
 
-        encoded = ProfilePlace.encode_token(token)
+        encoded = ProfilePlace.Token.encode(token)
         Redix.command(:redis, ["SET", encoded, token.type])
 
         conn
