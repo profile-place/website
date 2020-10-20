@@ -17,6 +17,8 @@ defmodule ProfilePlaceWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/login", PageController, :login
+    get "/profile", PageController, :profile
   end
 
   scope "/api", ProfilePlaceWeb do
@@ -24,6 +26,13 @@ defmodule ProfilePlaceWeb.Router do
 
     post "/signup", ApiController, :signup
     post "/login", ApiController, :login
+  end
+
+  scope "/oauth", ProfilePlaceWeb do
+    pipe_through :browser
+
+    get "/discord", DiscordController, :init
+    get "/discord-cb", DiscordController, :callback
   end
 
   # Other scopes may use custom stacks.

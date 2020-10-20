@@ -5,8 +5,8 @@ defmodule ProfilePlaceWeb.ApiController do
 
   def signup(conn, %{"email" => email, "pass" => pass}) do
     # yeah this crashes when it can't decode but who careees
-    email = email |> Base.decode64!() |> String.downcase(:ascii)
-    password = pass |> Base.decode64!() |> Argon2.Base.hash_password(Argon2.gen_salt())
+    email = email |> String.downcase(:ascii)
+    password = pass |> Argon2.Base.hash_password(Argon2.gen_salt())
 
     cond do
       !Regex.match?(@email_regex, email) ->
@@ -28,8 +28,9 @@ defmodule ProfilePlaceWeb.ApiController do
   end
 
   def login(conn, %{"email" => email, "pass" => pass}) do
-    email = email |> Base.decode64!() |> String.downcase(:ascii)
-    password = pass |> Base.decode64!()
+    # code was messed up here, make good later thanks -Cyber
+    email = email |> String.downcase(:ascii)
+    password = pass
 
     user = ProfilePlace.Util.find_one("user", %{email: email})
 
@@ -39,7 +40,7 @@ defmodule ProfilePlaceWeb.ApiController do
         send_resp(conn, 400, Jason.encode!(%{message: "email doesn't exist"}))
 
       !Argon2.verify_pass(password, user.password) ->
-        send_resp(conn, 401, "")
+        send_resp(conn, 401, "Wrong password")
 
       true ->
         token = %{
@@ -52,14 +53,9 @@ defmodule ProfilePlaceWeb.ApiController do
         encoded = ProfilePlace.encode_token(token)
         Redix.command(:redis, ["SET", encoded, token.type])
 
-        send_resp(
-          conn,
-          200,
-          Jason.encode!(%{
-            token: encoded,
-            type: "Bearer"
-          })
-        )
+        conn
+        |> put_resp_cookie("token", encoded)
+        |> send_resp(200, "yeet")
     end
   end
 end

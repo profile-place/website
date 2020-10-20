@@ -1,0 +1,2 @@
+<h1>Successfully linked <%= @app %>!</h1>
+Welcome, <%= @name %>

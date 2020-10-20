@@ -4,4 +4,13 @@ defmodule ProfilePlaceWeb.PageController do
   def index(conn, _params) do
     render(conn, "index.html")
   end
+
+  def login(conn, _params) do
+    render(conn, "login.html")
+  end
+
+  def profile(conn, _params) do
+    # conn = fetch_cookies(conn)
+    render(conn, "profile.html", user: ProfilePlace.get_token_owner(conn.cookies["token"]))
+  end
 end

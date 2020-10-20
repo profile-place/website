@@ -1,0 +1,5 @@
+<form action="/api/login" method="post">
+  <input type="email" name="email" placeholder="cyber@profile.place" autocomplete="off">
+  <input type="password" name="pass" placeholder="Password" autocomplete="off">
+  <input type="submit" value="Submit">
+</form>
