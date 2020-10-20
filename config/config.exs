@@ -31,7 +31,10 @@ config :profile_place,
   db_url: System.fetch_env!("DB_URL"),
   discord_id: System.fetch_env!("DISCORD_ID"),
   discord_secret: System.fetch_env!("DISCORD_SECRET"),
-  discord_redirect: System.fetch_env!("DISCORD_REDIRECT")
+  discord_redirect: System.fetch_env!("DISCORD_REDIRECT"),
+  spotify_id: System.fetch_env!("SPOTIFY_ID"),
+  spotify_secret: System.fetch_env!("SPOTIFY_SECRET"),
+  spotify_redirect: System.fetch_env!("SPOTIFY_REDIRECT")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

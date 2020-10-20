@@ -37,6 +37,9 @@ defmodule ProfilePlaceWeb.Router do
 
     get "/discord", DiscordController, :init
     get "/discord-cb", DiscordController, :callback
+
+    get "/spotify", SpotifyController, :init
+    get "/spotify-cb", SpotifyController, :callback
   end
 
   # Other scopes may use custom stacks.
