@@ -1,6 +1,8 @@
 defmodule ProfilePlaceWeb.DiscordController do
   use ProfilePlaceWeb, :controller
 
+  import ProfilePlace.Util, only: [decode_to_atoms: 1, insert_into_db: 4]
+
   plug :put_view, ProfilePlaceWeb.PageView
 
   def init(conn, _params) do
@@ -30,28 +32,16 @@ defmodule ProfilePlaceWeb.DiscordController do
       ])
 
     # TODO: tokens should be stored somewhere
-    tokens = Jason.decode!(tokens)
+    tokens = decode_to_atoms(tokens)
 
     %{status_code: 200, body: user} =
       HTTPoison.get!("https://discord.com/api/users/@me", [
-        {"Authorization", "Bearer #{tokens["access_token"]}"}
+        {"Authorization", "Bearer #{tokens.access_token}"}
       ])
 
-    # lmao this is ugly pls format later
-    user = Jason.decode!(user)
-
-    user =
-      Map.merge(user, %{
-        "_owner" => conn.assigns.token_owner,
-        "_id" => "discord:#{user["id"]}"
-      })
-
-    case Mongo.find_one(:db, "connection", %{_id: user["_id"]}) do
-      nil -> Mongo.insert_one(:db, "connection", user)
-      _ -> Mongo.find_one_and_update(:db, "connection", %{_id: user["_id"]}, %{"$set" => user})
-    end
+    insert_into_db(user, conn.assigns.token_owner, "discord", :id)
 
     # TODO: this should be a redirect instead
-    render(conn, "linked.html", %{app: "Discord", name: user["username"]})
+    render(conn, "linked.html", %{app: "Discord", name: decode_to_atoms(user).username})
   end
 end

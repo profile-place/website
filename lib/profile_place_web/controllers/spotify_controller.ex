@@ -1,6 +1,8 @@
 defmodule ProfilePlaceWeb.SpotifyController do
   use ProfilePlaceWeb, :controller
 
+  import ProfilePlace.Util, only: [decode_to_atoms: 1, insert_into_db: 4]
+
   plug :put_view, ProfilePlaceWeb.PageView
 
   def init(conn, _params) do
@@ -38,26 +40,15 @@ defmodule ProfilePlaceWeb.SpotifyController do
         ]
       )
 
-    tokens = Jason.decode!(tokens)
+    tokens = decode_to_atoms(tokens)
 
     %{status_code: 200, body: user} =
       HTTPoison.get!("https://api.spotify.com/v1/me", [
-        {"Authorization", "Bearer #{tokens["access_token"]}"}
+        {"Authorization", "Bearer #{tokens.access_token}"}
       ])
 
-    user = Jason.decode!(user)
+    insert_into_db(user, conn.assigns.token_owner, "spotify", :id)
 
-    user =
-      Map.merge(user, %{
-        "_owner" => conn.assigns.token_owner,
-        "_id" => "spotify:#{user["id"]}"
-      })
-
-    case Mongo.find_one(:db, "connection", %{_id: user["_id"]}) do
-      nil -> Mongo.insert_one(:db, "connection", user)
-      _ -> Mongo.find_one_and_update(:db, "connection", %{_id: user["_id"]}, %{"$set" => user})
-    end
-
-    render(conn, "linked.html", %{app: "Spotify", name: user["display_name"]})
+    render(conn, "linked.html", %{app: "Spotify", name: decode_to_atoms(user).display_name})
   end
 end
