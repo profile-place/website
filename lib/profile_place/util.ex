@@ -35,8 +35,6 @@ defmodule ProfilePlace.Util do
         }
       )
 
-    IO.inspect(obj)
-
     # ah yes there should be app-specific checks to see if username has been changed or whatever
     case Mongo.find_one(:db, "connection", %{_id: obj._id}) do
       nil -> Mongo.insert_one(:db, "connection", obj)
