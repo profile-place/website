@@ -1,5 +1,5 @@
-<%= if @user do %>
-You are logged in as <%= @user %>!
-<% else %>
-You are NOT logged in
+<h1>Hello <%= @user._id %></h1>
+
+<%= for con <- @connections do %>
+  <span><%= ProfilePlace.Util.get_app(con._id) %>: <%= con.id %></span><br>
 <% end %>

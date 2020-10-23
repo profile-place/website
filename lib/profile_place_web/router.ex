@@ -25,6 +25,12 @@ defmodule ProfilePlaceWeb.Router do
     get "/profile", PageController, :profile
   end
 
+  scope "/p", ProfilePlaceWeb do
+    pipe_through :browser
+
+    get "/:id", ProfileController, :show
+  end
+
   scope "/api", ProfilePlaceWeb do
     pipe_through :api
 
