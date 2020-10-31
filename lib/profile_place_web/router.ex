@@ -23,6 +23,8 @@ defmodule ProfilePlaceWeb.Router do
     get "/", PageController, :index
     get "/login", PageController, :login
     get "/profile", PageController, :profile
+    # slugs but i call it id so the function matches
+    get "/:id", ProfileController, :show
   end
 
   scope "/p", ProfilePlaceWeb do

@@ -1,5 +1,10 @@
 defmodule ProfilePlace.Util do
   @doc """
+  self-explanatory; I shouldn't have to write docs for this
+  """
+  def is_slug?(slug), do: String.match?(slug, ~r/([a-zA-Z]+\d+)|([a-zA-Z]+)/)
+
+  @doc """
   Mongo.find_one/4 but parses result to `nil` or a map where the keys are atoms.
   We pretty much only use this if we care about the result, not just in the context of "oh this exists? aight".
   """
@@ -31,7 +36,7 @@ defmodule ProfilePlace.Util do
   Decodes JSON string and maps keys to atoms
   """
   def decode_to_atoms(string),
-    do: string |> Jason.decode!() |> Map.new(fn {k, v} -> {String.to_atom(k), v} end)
+    do: string |> Jason.decode!() |> Map.new(&map_keys_to_atoms/1)
 
   @doc """
   Inserts an object into db. `obj` should be a JSON string returned
@@ -63,5 +68,9 @@ defmodule ProfilePlace.Util do
   """
   def get_app(str), do: String.split(str, ":") |> List.first()
 
-  defp map_keys_to_atoms({k, v}), do: {String.to_atom(k), v}
+  def map_keys_to_atoms({k, v}) do
+    if is_map(v),
+      do: {String.to_atom(k), Map.new(v, &map_keys_to_atoms/1)},
+      else: {String.to_atom(k), v}
+  end
 end
