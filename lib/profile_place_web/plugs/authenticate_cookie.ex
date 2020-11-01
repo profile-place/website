@@ -1,4 +1,4 @@
-defmodule ProfilePlaceWeb.Plugs.AuthenticateUser do
+defmodule ProfilePlaceWeb.Plugs.AuthenticateCookie do
   import Plug.Conn
   import Phoenix.Controller
 

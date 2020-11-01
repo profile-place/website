@@ -20,15 +20,13 @@ defmodule ProfilePlace.Util do
   Mongo.find/4 but parses the result to `nil` or a list of maps where the keys are atoms
   """
   def find(coll, filter, opts \\ []) do
-    case Mongo.find(:db, coll, filter, opts) do
+    case Mongo.find(:db, coll, filter, opts) |> Enum.to_list() do
       [] ->
         nil
 
       # TODO: find better variable names lol
       x ->
-        x
-        |> Enum.to_list()
-        |> Enum.map(fn y -> Map.new(y, &map_keys_to_atoms/1) end)
+        Enum.map(x, fn y -> Map.new(y, &map_keys_to_atoms/1) end)
     end
   end
 
