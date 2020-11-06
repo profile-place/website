@@ -1,7 +1,7 @@
 defmodule ProfilePlaceWeb.ApiController do
   use ProfilePlaceWeb, :controller
 
-  alias ProfilePlace.Token
+  alias ProfilePlace.{Token, User}
 
   @email_regex ~r([\w.!#$%&'*+-/=?^`{|}~]{1,64}@[a-z0-9-]{1,255}.[a-z-]{1,64})
 
@@ -18,7 +18,7 @@ defmodule ProfilePlaceWeb.ApiController do
         send_resp(conn, 400, "email address in use")
 
       true ->
-        Mongo.insert_one(:db, "user", %{
+        Mongo.insert_one(:db, "user", %User{
           _id: Snowflake.next_id() |> elem(1),
           email: email,
           password: password,
