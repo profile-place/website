@@ -17,6 +17,10 @@ defmodule ProfilePlaceWeb.Router do
     plug ProfilePlaceWeb.Plugs.AuthenticateCookie
   end
 
+  pipeline :require_header_auth do
+    plug ProfilePlaceWeb.Plugs.AuthenticateHeader
+  end
+
   scope "/", ProfilePlaceWeb do
     pipe_through :browser
 
