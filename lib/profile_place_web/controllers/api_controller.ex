@@ -1,6 +1,8 @@
 defmodule ProfilePlaceWeb.ApiController do
   use ProfilePlaceWeb, :controller
 
+  alias ProfilePlace.Token
+
   @email_regex ~r([\w.!#$%&'*+-/=?^`{|}~]{1,64}@[a-z0-9-]{1,255}.[a-z-]{1,64})
 
   def signup(conn, %{"email" => email, "pass" => pass}) do
@@ -43,14 +45,14 @@ defmodule ProfilePlaceWeb.ApiController do
         send_resp(conn, 401, "Wrong password")
 
       true ->
-        token = %{
+        token = %Token{
           _id: ProfilePlace.gen_secret(),
           owner: user._id,
           type: 0,
           timestamp: :os.system_time(:millisecond) - 1_577_836_800_000
         }
 
-        encoded = ProfilePlace.Token.encode(token)
+        encoded = Token.encode(token)
         Redix.command(:redis, ["SET", encoded, token.type])
 
         conn
