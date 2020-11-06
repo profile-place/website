@@ -1,10 +1,5 @@
 defmodule ProfilePlace.Util do
   @doc """
-  self-explanatory; I shouldn't have to write docs for this
-  """
-  def is_slug?(slug), do: String.match?(slug, ~r/([a-zA-Z]+\d+)|([a-zA-Z]+)/)
-
-  @doc """
   Mongo.find_one/4 but parses result to `nil` or a map where the keys are atoms.
   We pretty much only use this if we care about the result, not just in the context of "oh this exists? aight".
   """

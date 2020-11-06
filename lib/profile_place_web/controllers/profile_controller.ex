@@ -4,7 +4,7 @@ defmodule ProfilePlaceWeb.ProfileController do
   plug :put_view, ProfilePlaceWeb.PageView
 
   def show(conn, %{"id" => id}) do
-    if ProfilePlace.Util.is_slug?(id) do
+    if ProfilePlace.Slug.is_slug?(id) do
       # we are dealing with a slug
       case ProfilePlace.Util.find_one("slug", %{_id: id}) do
         nil ->
