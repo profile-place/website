@@ -43,3 +43,37 @@ body {
 input {
   color: #F5F5F5;
 }
+
+p {
+  margin-bottom: 0.2rem;
+}
+
+.connection-card {
+  display: flex;
+  background-color: #434343;
+  margin: 1rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  padding-right: 1rem;
+  max-width: 30%;
+  overflow-wrap: break-word;
+
+  .connection-image {
+    width: 8rem;
+    height: 8rem;
+    padding: 0.5rem;
+  }
+
+  .connection-text-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .connection-app {
+
+    }
+    .connection-text {
+
+    }
+  }
+}
