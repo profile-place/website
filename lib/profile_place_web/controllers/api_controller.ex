@@ -32,7 +32,6 @@ defmodule ProfilePlaceWeb.ApiController do
   def login(conn, %{"email" => email, "pass" => pass}) do
     # code was messed up here, make good later thanks -Cyber
     email = email |> String.downcase(:ascii)
-    password = pass
 
     user = ProfilePlace.Util.find_one("user", %{email: email})
 
@@ -41,7 +40,7 @@ defmodule ProfilePlaceWeb.ApiController do
         # this shouldn't be 400 but ok
         send_resp(conn, 400, Jason.encode!(%{message: "email doesn't exist"}))
 
-      !Argon2.verify_pass(password, user.password) ->
+      !Argon2.verify_pass(pass, user.password) ->
         send_resp(conn, 401, "Wrong password")
 
       true ->
