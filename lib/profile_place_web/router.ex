@@ -30,11 +30,11 @@ defmodule ProfilePlaceWeb.Router do
     get "/@:id", ProfileController, :show
   end
 
-  scope "/api", ProfilePlaceWeb do
+  scope "/account", ProfilePlaceWeb do
     pipe_through :api
 
-    post "/signup", ApiController, :signup
-    post "/login", ApiController, :login
+    post "/signup", AccountController, :signup
+    post "/login", AccountController, :login
   end
 
   scope "/oauth", ProfilePlaceWeb do

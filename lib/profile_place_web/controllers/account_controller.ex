@@ -1,4 +1,4 @@
-defmodule ProfilePlaceWeb.ApiController do
+defmodule ProfilePlaceWeb.AccountController do
   use ProfilePlaceWeb, :controller
 
   alias ProfilePlace.{Token, User}
@@ -30,7 +30,6 @@ defmodule ProfilePlaceWeb.ApiController do
   end
 
   def login(conn, %{"email" => email, "pass" => pass}) do
-    # code was messed up here, make good later thanks -Cyber
     email = email |> String.downcase(:ascii)
 
     user = ProfilePlace.Util.find_one("user", %{email: email})
