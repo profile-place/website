@@ -1,11 +1,14 @@
-# This file is responsible for configuring your application
-# and its dependencies with the aid of the Mix.Config module.
-#
-# This configuration file is loaded before any dependency and
-# is restricted to this project.
-
-# General application configuration
 use Mix.Config
+
+# Configures environment variables. There is a good chance you only want to touch this section
+config :profile_place,
+  db_url: System.fetch_env!("DB_URL"),
+  discord_id: System.fetch_env!("DISCORD_ID"),
+  discord_secret: System.fetch_env!("DISCORD_SECRET"),
+  discord_redirect: System.fetch_env!("DISCORD_REDIRECT"),
+  spotify_id: System.fetch_env!("SPOTIFY_ID"),
+  spotify_secret: System.fetch_env!("SPOTIFY_SECRET"),
+  spotify_redirect: System.fetch_env!("SPOTIFY_REDIRECT")
 
 # Configures the endpoint
 config :profile_place, ProfilePlaceWeb.Endpoint,
@@ -26,15 +29,6 @@ config :phoenix, :json_library, Jason
 config :snowflake,
   nodes: ["127.0.0.1"],
   epoch: 1_577_836_800_000
-
-config :profile_place,
-  db_url: System.fetch_env!("DB_URL"),
-  discord_id: System.fetch_env!("DISCORD_ID"),
-  discord_secret: System.fetch_env!("DISCORD_SECRET"),
-  discord_redirect: System.fetch_env!("DISCORD_REDIRECT"),
-  spotify_id: System.fetch_env!("SPOTIFY_ID"),
-  spotify_secret: System.fetch_env!("SPOTIFY_SECRET"),
-  spotify_redirect: System.fetch_env!("SPOTIFY_REDIRECT")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
