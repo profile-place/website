@@ -32,7 +32,7 @@ config :profile_place,
 ## Maintainers
 - [Cyber28](https://github.com/Cyber28)
 - [August](https://augu.dev)
-- [ravy](https://ravy.dev)
+- [ravy](https://ravy.pink)
 
 ## License
 **profile.place** is released under the **GPL-3** License, read [here](/LICENSE) for more information!
