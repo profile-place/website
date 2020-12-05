@@ -56,11 +56,6 @@ defmodule ProfilePlace.Util do
     end
   end
 
-  @doc """
-  Gets the app name from a connection _id (for example discord:123456789 would return "discord")
-  """
-  def get_app(str), do: String.split(str, ":") |> List.first()
-
   def map_keys_to_atoms({k, v}) do
     if is_map(v),
       do: {String.to_atom(k), Map.new(v, &map_keys_to_atoms/1)},

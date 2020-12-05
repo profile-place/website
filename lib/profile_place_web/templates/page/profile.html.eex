@@ -20,5 +20,5 @@
 </div>
 
 <%= for con <- @connections do %>
-  <span><%= ProfilePlace.Util.get_app(con._id) %>: <%= con.id %></span><br>
+  <span><%= ProfilePlace.App.get_app_name(con._id) %>: <%= con.id %></span><br>
 <% end %>
