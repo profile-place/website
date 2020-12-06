@@ -26,6 +26,7 @@ defmodule ProfilePlaceWeb.Router do
 
     get "/", PageController, :index
     get "/login", PageController, :login
+    get "/join", PageController, :join
     get "/profile", PageController, :profile
     get "/@:id", ProfileController, :show
   end

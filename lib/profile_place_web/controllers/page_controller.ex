@@ -8,4 +8,8 @@ defmodule ProfilePlaceWeb.PageController do
   def login(conn, _params) do
     render(conn, "login.html")
   end
+
+  def join(conn, _params) do
+    render(conn, "join.html")
+  end
 end

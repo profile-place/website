@@ -6,7 +6,6 @@ defmodule ProfilePlaceWeb.AccountController do
   @email_regex ~r([\w.!#$%&'*+-/=?^`{|}~]{1,64}@[a-z0-9-]{1,255}.[a-z-]{1,64})
 
   def signup(conn, %{"email" => email, "pass" => pass}) do
-    # yeah this crashes when it can't decode but who careees
     email = email |> String.downcase(:ascii)
     password = pass |> Argon2.Base.hash_password(Argon2.gen_salt())
 
@@ -18,14 +17,20 @@ defmodule ProfilePlaceWeb.AccountController do
         send_resp(conn, 400, "email address in use")
 
       true ->
-        Mongo.insert_one(:db, "user", %User{
-          _id: Snowflake.next_id() |> elem(1),
-          email: email,
-          password: password,
-          connections: []
-        })
+        Mongo.insert_one(
+          :db,
+          "user",
+          # gotta use Map.from_struct/1 here since structs don't have the Enumerable protocol implemented kek
+          Map.from_struct(%User{
+            _id: Snowflake.next_id() |> elem(1),
+            email: email,
+            password: password,
+            connections: [],
+            max_slugs: 1
+          })
+        )
 
-        send_resp(conn, 200, "")
+        send_resp(conn, 200, "yeet")
     end
   end
 
