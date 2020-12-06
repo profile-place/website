@@ -9,7 +9,7 @@ defmodule ProfilePlaceWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
+  pipeline :api_endpoint do
     plug :accepts, ["json"]
   end
 
@@ -30,11 +30,13 @@ defmodule ProfilePlaceWeb.Router do
     get "/@:id", ProfileController, :show
   end
 
-  scope "/account", ProfilePlaceWeb do
-    pipe_through :api
+  scope "/api", ProfilePlaceWeb do
+    scope "/account" do
+      pipe_through :api_endpoint
 
-    post "/signup", AccountController, :signup
-    post "/login", AccountController, :login
+      post "/signup", AccountController, :signup
+      post "/login", AccountController, :login
+    end
   end
 
   scope "/oauth", ProfilePlaceWeb do
