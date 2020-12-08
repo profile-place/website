@@ -23,6 +23,7 @@ defmodule ProfilePlaceWeb.AccountController do
           # gotta use Map.from_struct/1 here since structs don't have the Enumerable protocol implemented kek
           Map.from_struct(%User{
             _id: Snowflake.next_id() |> elem(1),
+            data: %{},
             email: email,
             password: password,
             connections: [],
