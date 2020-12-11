@@ -21,6 +21,10 @@ defmodule ProfilePlaceWeb.Router do
     plug ProfilePlaceWeb.Plugs.AuthenticateHeader
   end
 
+  pipeline :require_some_auth do
+    plug ProfilePlaceWeb.Plugs.AuthenticateSome
+  end
+
   scope "/", ProfilePlaceWeb do
     pipe_through :browser
 
@@ -28,6 +32,7 @@ defmodule ProfilePlaceWeb.Router do
     get "/login", PageController, :login
     get "/join", PageController, :join
     get "/profile", PageController, :profile
+    get "/slugmanagementpage", PageController, :slugmanagementpage
     get "/@:id", ProfileController, :show
   end
 
@@ -37,6 +42,12 @@ defmodule ProfilePlaceWeb.Router do
 
       post "/signup", AccountController, :signup
       post "/login", AccountController, :login
+    end
+
+    scope "/slug" do
+      pipe_through [:api_endpoint, :require_some_auth]
+
+      get "/add", SlugController, :add
     end
   end
 

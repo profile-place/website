@@ -1,8 +1,13 @@
+<div class="container mx-auto px-8 py-10">
+  <p>Welcome to Phoenix, AZ, noob.</p>
+  <p>reminder that emily and ravy are cute af</p>
+</div>
+
+<!-- this is the index page tho that gets rendered on /
 <section class="phx-hero">
   <h1>Welcome to Phoenix!</h1>
   <p>Peace-of-mind from prototype to production</p>
 </section>
-
 <section class="row">
   <article class="column">
     <h2>Resources</h2>
@@ -36,3 +41,4 @@
     </ul>
   </article>
 </section>
+-->

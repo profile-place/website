@@ -36,9 +36,10 @@ module.exports = (env, options) => {
         {
           test: /\.[s]?css$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            //MiniCssExtractPlugin.loader, - this plugin shit, fuck you
             'css-loader',
             'sass-loader',
+            'postcss-loader'
           ],
         }
       ]
