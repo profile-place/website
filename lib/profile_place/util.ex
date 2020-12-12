@@ -1,4 +1,8 @@
 defmodule ProfilePlace.Util do
+  @moduledoc """
+  Friendly reminder that this module should NOT exist. It's literally just a compilations of functions that could exist in better places
+  """
+
   @doc """
   Mongo.find_one/4 but parses result to `nil` or a map where the keys are atoms.
   We pretty much only use this if we care about the result, not just in the context of "oh this exists? aight".
@@ -60,5 +64,9 @@ defmodule ProfilePlace.Util do
     if is_map(v),
       do: {String.to_atom(k), Map.new(v, &map_keys_to_atoms/1)},
       else: {String.to_atom(k), v}
+  end
+
+  def component(name, assigns \\ %{}) do
+    Phoenix.View.render(ProfilePlaceWeb.ComponentView, name <> ".html", assigns)
   end
 end

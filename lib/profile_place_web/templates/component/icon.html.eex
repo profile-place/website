@@ -1,0 +1,3 @@
+<div class="inline-block overflow-hidden" style="padding-left: 3.25px">
+  <img src="/images/icons/<%= @icon %>.svg" draggable='false' width='33' height='35' />
+</div>
