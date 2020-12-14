@@ -29,6 +29,13 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
     </main>
-    -->
+    <div class="mx-auto mt-20 mb-3">
+      <p class="text-center text-gray-700">
+        &copy; Better Profiles Project, 1200
+      </p>
+      <p class="text-center text-gray-600">
+        <a class="cursor-pointer">Terms of Service</a> &bull; <a class="cursor-pointer">Privacy Policy</a>
+      </p>
+    </div>
   </body>
 </html>
