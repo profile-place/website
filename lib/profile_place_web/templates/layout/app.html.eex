@@ -4,34 +4,46 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ProfilePlace · Phoenix Framework</title> <!-- this should be dynamic imo (i.e changed in the route) -->
+    <title><%= assigns[:page_title] || "profile.place" %></title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
+    <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6 pb-6">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <img
+          src='https://profile.place/assets/img/logo.png'
+          style="border-radius:50%;"
+          class='fill-current h-8 w-8 mr-2'
+          height='54'
+          width='54'
+          alt='Placeholder'
+          draggable='false'
+        />
+
+        <span class="text-xl tracking-tight font-semibold">| profile.place</span>
+      </div>
+      <div class="block lg:hidden">
+        <button class="flex items-center px-3 py-2 border rounded hover:text-white hover:border-white" onclick="document.getElementById('drop').classList.toggle('sm:hidden')">
+          <img class="fas fa-bars text-white" />
+        </button>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto" id="drop">
+        <div class="text-sm lg:flex-grow">
+          <a href="/" class="cursor-pointer text-white block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4">Home</a>
+        </div>
+      </div>
+    </nav>
+
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
     </main>
-    <div class="mx-auto mt-20 mb-3">
+
+    <div class="mx-auto mt-20 mb-3 absolute" style="bottom:0;">
       <p class="text-center text-gray-700">
-        &copy; Better Profiles Project, 1200
+        &copy; Better Profiles Project, 2020
       </p>
       <p class="text-center text-gray-600">
         <a class="cursor-pointer">Terms of Service</a> &bull; <a class="cursor-pointer">Privacy Policy</a>
