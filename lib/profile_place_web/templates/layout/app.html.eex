@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
-  <body>
+  <body class="text-gray-100 bg-gray-700">
     <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6 pb-6">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <img
@@ -42,10 +42,10 @@
     </main>
 
     <div class="mx-auto mt-20 mb-3 absolute" style="bottom:0;">
-      <p class="text-center text-gray-700">
+      <p class="text-center text-gray-500">
         &copy; Better Profiles Project, 2020
       </p>
-      <p class="text-center text-gray-600">
+      <p class="text-center text-gray-400">
         <a class="cursor-pointer">Terms of Service</a> &bull; <a class="cursor-pointer">Privacy Policy</a>
       </p>
     </div>
