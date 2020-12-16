@@ -1,4 +1,4 @@
-<h1>Hello <%= @user._id %></h1>
+<h1>Hello <%= @user.display_name %></h1>
 
 <div class="connection-card">
   <div class="connection-image">
@@ -7,15 +7,6 @@
   <div class="connection-text-container">
     <p class="connection-app">Cyber28#2864</p>
     <p class="connection-text">Vibin'</p>
-  </div>
-</div>
-
-<div class="connection-card">
-  <div class="connection-image">
-    <img src="https://discord.com/assets/2c21aeda16de354ba5334551a883b481.png" alt="app icon" title="Discord">
-  </div>
-  <div class="connection-text-container">
-    <p class="connection-app">Cyber28#2864</p>
   </div>
 </div>
 

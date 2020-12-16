@@ -3,6 +3,7 @@ defmodule ProfilePlace.User do
     :_id,
     :connections,
     :data,
+    :display_name,
     :email,
     :max_slugs,
     :password
@@ -12,6 +13,7 @@ defmodule ProfilePlace.User do
           _id: integer,
           connections: list,
           data: __MODULE__.Data,
+          display_name: String.t(),
           email: String.t(),
           max_slugs: integer,
           password: String.t()
