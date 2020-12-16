@@ -27,7 +27,7 @@ defmodule ProfilePlaceWeb.ProfileController do
         send_resp(conn, 404, "not found lul")
 
       user ->
-        connections = ProfilePlace.Util.find("connection", %{_owner: user._id})
+        connections = ProfilePlace.Util.find("connection", %{_owner: user._id}) || []
         render(conn, "profile.html", %{user: user, connections: connections})
     end
   end
