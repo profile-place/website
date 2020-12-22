@@ -1,15 +1,12 @@
+<% import ProfilePlace.Util, only: [component: 2] %>
+
 <h1>Hello <%= @user.display_name %></h1>
 
-<div class="connection-card">
-  <div class="connection-image">
-    <img src="https://discord.com/assets/2c21aeda16de354ba5334551a883b481.png" alt="app icon" title="Discord">
-  </div>
-  <div class="connection-text-container">
-    <p class="connection-app">Cyber28#2864</p>
-    <p class="connection-text">Vibin'</p>
-  </div>
+<div class="flex flex-gap-3 flex-wrap content-around justify-evenly">
+  <%= for con <- @connections do %>
+    <%= component("connection", %{
+      name: ProfilePlace.App.get_app_name(con._id),
+      desc: con.id
+    }) %>
+  <% end %>
 </div>
-
-<%= for con <- @connections do %>
-  <span><%= ProfilePlace.App.get_app_name(con._id) %>: <%= con.id %></span><br>
-<% end %>

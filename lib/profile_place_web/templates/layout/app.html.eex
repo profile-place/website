@@ -35,18 +35,16 @@
       </div>
     </nav>
 
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <main role="main">
       <%= @inner_content %>
     </main>
 
-    <div class="mx-auto mt-20 mb-3 absolute" style="bottom:0;">
+    <footer class="mx-auto mt-20 mb-3 bottom-0">
       <p class="text-center text-gray-500">
         &copy; Better Profiles Project, 2020
       </p>
       <p class="text-center text-gray-400">
-        <a class="cursor-pointer">Terms of Service</a> &bull; <a class="cursor-pointer">Privacy Policy</a>
+        <a class="cursor-pointer underline">Terms of Service</a> &bull; <a class="cursor-pointer underline">Privacy Policy</a>
       </p>
     </div>
   </body>
