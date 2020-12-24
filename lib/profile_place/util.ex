@@ -42,8 +42,6 @@ defmodule ProfilePlace.Util do
   the second part of the key (id, username, whatever works)
   """
   def insert_into_db(obj, token_owner, app, key) do
-    obj = decode_to_atoms(obj)
-
     obj =
       Map.merge(
         obj,
@@ -57,6 +55,24 @@ defmodule ProfilePlace.Util do
     case Mongo.find_one(:db, "connection", %{_id: obj._id}) do
       nil -> Mongo.insert_one(:db, "connection", obj)
       _ -> Mongo.find_one_and_update(:db, "connection", %{_id: obj._id}, %{"$set" => obj})
+    end
+  end
+
+  # our tokens are already encoded since we handle them while getting data for insert_into_db/4
+  # lmao this will need massive refactoring later, idc
+  def save_tokens(obj, token_owner, app, key) do
+    obj =
+      Map.merge(
+        obj,
+        %{
+          _owner: token_owner,
+          _id: "#{app}:#{key}"
+        }
+      )
+
+    case Mongo.find_one(:db, "token", %{_id: obj._id}) do
+      nil -> Mongo.insert_one(:db, "token", obj)
+      _ -> Mongo.find_one_and_update(:db, "token", %{_id: obj._id}, %{"$set" => obj})
     end
   end
 

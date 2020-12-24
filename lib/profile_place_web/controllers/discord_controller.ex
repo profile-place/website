@@ -1,7 +1,7 @@
 defmodule ProfilePlaceWeb.DiscordController do
   use ProfilePlaceWeb, :controller
 
-  import ProfilePlace.Util, only: [decode_to_atoms: 1, insert_into_db: 4]
+  import ProfilePlace.Util, only: [decode_to_atoms: 1, insert_into_db: 4, save_tokens: 4]
 
   plug :put_view, ProfilePlaceWeb.PageView
 
@@ -31,7 +31,6 @@ defmodule ProfilePlaceWeb.DiscordController do
         {"Content-Type", "application/x-www-form-urlencoded"}
       ])
 
-    # TODO: tokens should be stored somewhere
     tokens = decode_to_atoms(tokens)
 
     %{status_code: 200, body: user} =
@@ -39,9 +38,12 @@ defmodule ProfilePlaceWeb.DiscordController do
         {"Authorization", "Bearer #{tokens.access_token}"}
       ])
 
+    user = decode_to_atoms(user)
+
+    save_tokens(tokens, conn.assigns.token_owner, "discord", user.id)
     insert_into_db(user, conn.assigns.token_owner, "discord", :id)
 
     # TODO: this should be a redirect instead
-    render(conn, "linked.html", %{app: "Discord", name: decode_to_atoms(user).username})
+    render(conn, "linked.html", %{app: "Discord", name: user.username})
   end
 end

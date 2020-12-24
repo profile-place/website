@@ -28,6 +28,18 @@ defmodule ProfilePlaceWeb.ProfileController do
 
       user ->
         connections = ProfilePlace.Util.find("connection", %{_owner: user._id}) || []
+
+        connections =
+          connections
+          |> Enum.map(fn _ -> ProfilePlace.App.test_req() end)
+          |> Task.await_many()
+          |> Enum.zip(connections)
+          |> Enum.map(fn {d, c} ->
+            Map.merge(c, %{
+              desc: d
+            })
+          end)
+
         render(conn, "profile.html", %{user: user, connections: connections})
     end
   end

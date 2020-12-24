@@ -1,7 +1,7 @@
 defmodule ProfilePlaceWeb.SpotifyController do
   use ProfilePlaceWeb, :controller
 
-  import ProfilePlace.Util, only: [decode_to_atoms: 1, insert_into_db: 4]
+  import ProfilePlace.Util, only: [decode_to_atoms: 1, insert_into_db: 4, save_tokens: 4]
 
   plug :put_view, ProfilePlaceWeb.PageView
 
@@ -11,10 +11,11 @@ defmodule ProfilePlaceWeb.SpotifyController do
     redirect = Application.get_env(:profile_place, :spotify_redirect) |> URI.encode()
 
     redirect(conn,
+      # god i hate how this gets linted
       external:
-        "https://accounts.spotify.com/authorize?response_type=code&client_id=#{id}&redirect_uri=#{
-          redirect
-        }"
+        "https://accounts.spotify.com/authorize?response_type=code&scope=user-read-playback-state&client_id=#{
+          id
+        }&redirect_uri=#{redirect}"
     )
   end
 
@@ -47,8 +48,11 @@ defmodule ProfilePlaceWeb.SpotifyController do
         {"Authorization", "Bearer #{tokens.access_token}"}
       ])
 
+    user = decode_to_atoms(user)
+
+    save_tokens(tokens, conn.assigns.token_owner, "spotify", user.id)
     insert_into_db(user, conn.assigns.token_owner, "spotify", :id)
 
-    render(conn, "linked.html", %{app: "Spotify", name: decode_to_atoms(user).display_name})
+    render(conn, "linked.html", %{app: "Spotify", name: user.display_name})
   end
 end
