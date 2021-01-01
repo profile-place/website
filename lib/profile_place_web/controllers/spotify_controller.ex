@@ -1,7 +1,7 @@
 defmodule ProfilePlaceWeb.SpotifyController do
   use ProfilePlaceWeb, :controller
 
-  import ProfilePlace.Util, only: [decode_to_atoms: 1, insert_into_db: 4, save_tokens: 4]
+  alias ProfilePlace.Util
 
   plug :put_view, ProfilePlaceWeb.PageView
 
@@ -41,17 +41,17 @@ defmodule ProfilePlaceWeb.SpotifyController do
         ]
       )
 
-    tokens = decode_to_atoms(tokens)
+    tokens = Util.decode_to_atoms(tokens)
 
     %{status_code: 200, body: user} =
       HTTPoison.get!("https://api.spotify.com/v1/me", [
         {"Authorization", "Bearer #{tokens.access_token}"}
       ])
 
-    user = decode_to_atoms(user)
+    user = Util.decode_to_atoms(user)
 
-    save_tokens(tokens, conn.assigns.token_owner, "spotify", user.id)
-    insert_into_db(user, conn.assigns.token_owner, "spotify", :id)
+    Util.save_tokens(tokens, conn.assigns.token_owner, "spotify", user.id)
+    Util.insert_into_db(user, conn.assigns.token_owner, "spotify", :id)
 
     render(conn, "linked.html", %{app: "Spotify", name: user.display_name})
   end
