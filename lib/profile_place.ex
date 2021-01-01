@@ -8,7 +8,4 @@ defmodule ProfilePlace do
   if it comes from the database, an external API or others.
   """
   def gen_secret, do: :crypto.strong_rand_bytes(32) |> Base.encode16()
-
-  # this is literally URI.encode_query/2 but ok
-  def urlencode(payload), do: Enum.map(payload, fn {k, v} -> "#{k}=#{v}" end) |> Enum.join("&")
 end

@@ -27,7 +27,7 @@ defmodule ProfilePlaceWeb.DiscordController do
 
     # bang bad, handle errors properly pls thx
     %{status_code: 200, body: tokens} =
-      HTTPoison.post!("https://discord.com/api/oauth2/token", ProfilePlace.urlencode(payload), [
+      HTTPoison.post!("https://discord.com/api/oauth2/token", URI.encode_query(payload), [
         {"Content-Type", "application/x-www-form-urlencoded"}
       ])
 
@@ -40,7 +40,7 @@ defmodule ProfilePlaceWeb.DiscordController do
 
     user = Util.decode_to_atoms(user)
 
-    Uzil.save_tokens(tokens, conn.assigns.token_owner, "discord", user.id)
+    Util.save_tokens(tokens, conn.assigns.token_owner, "discord", user.id)
     Util.insert_into_db(user, conn.assigns.token_owner, "discord", :id)
 
     # TODO: this should be a redirect instead

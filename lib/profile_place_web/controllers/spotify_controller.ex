@@ -34,7 +34,7 @@ defmodule ProfilePlaceWeb.SpotifyController do
     %{status_code: 200, body: tokens} =
       HTTPoison.post!(
         "https://accounts.spotify.com/api/token",
-        ProfilePlace.urlencode(payload),
+        URI.encode_query(payload),
         [
           {"Authorization", "Basic " <> Base.encode64("#{id}:#{secret}")},
           {"Content-Type", "application/x-www-form-urlencoded"}
