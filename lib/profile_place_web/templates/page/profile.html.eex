@@ -1,5 +1,3 @@
-<% import ProfilePlace.Util, only: [component: 2] %>
-
 <h1>Hello <%= @user.display_name %></h1>
 
 <div class="flex flex-gap-3 flex-wrap content-around justify-evenly">
