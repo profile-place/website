@@ -11,7 +11,7 @@ defmodule ProfilePlaceWeb.DiscordController do
 
     redirect(conn,
       external:
-        "https://discord.com/api/oauth2/authorize?client_id=#{id}&redirect_uri=#{redirect}&response_type=code&scope=identify"
+        "https://discord.com/api/oauth2/authorize?client_id=#{id}&redirect_uri=#{redirect}&response_type=code&scope=identify+connections"
     )
   end
 
@@ -27,9 +27,13 @@ defmodule ProfilePlaceWeb.DiscordController do
 
     # bang bad, handle errors properly pls thx
     %{status_code: 200, body: tokens} =
-      HTTPoison.post!("https://discord.com/api/oauth2/token", URI.encode_query(payload), [
-        {"Content-Type", "application/x-www-form-urlencoded"}
-      ])
+      HTTPoison.post!(
+        "https://discord.com/api/oauth2/token",
+        URI.encode_query(payload),
+        [
+          {"Content-Type", "application/x-www-form-urlencoded"}
+        ]
+      )
 
     tokens = Util.decode_to_atoms(tokens)
 
