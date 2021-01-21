@@ -12,3 +12,63 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
+// Row elements for social cards
+// Credit goes to sharosky <3
+.pp-row {
+  justify-content: center;
+  align-items: center;
+  margin-left: -10%;
+  flex-wrap: wrap;
+  position: absolute;
+  display: flex;
+}
+
+.social-card {
+  @apply mr-8;
+  @apply py-4;
+  @apply text-2xl;
+
+  border-radius: .375rem;
+  align-items: center;
+  transition: all 0.3s;
+  text-align: center;
+  display: block;
+  cursor: pointer;
+  width: 300px;
+}
+
+.social-card:hover {
+  transform: scale(1.05);
+}
+
+.bg-discord {
+  background-color: #7289DA;
+  color: #ffffff;
+}
+
+.bg-website {
+  background-color: #534275;
+  color: #333333;
+}
+
+.bg-spotify {
+  background-color: #1DB954;
+  color: #111111;
+}
+
+.bg-twitter {
+  background-color: #1DA1F2;
+  color: white;
+}
+
+.bg-github {
+  background-color: #333333;
+  color: white;
+}
+
+@media screen and (max-width: 980px) {
+  .row {
+    margin-left: 8px;
+  }
+}

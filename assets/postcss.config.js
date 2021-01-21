@@ -4,6 +4,7 @@ module.exports = {
 			includePaths: ['./node_modules']
 		}),
 		//require('autoprefixer'),
-		require('tailwindcss')
+		require('tailwindcss'),
+		require('cssnano')
 	]
 };

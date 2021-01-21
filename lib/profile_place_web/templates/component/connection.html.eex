@@ -3,10 +3,19 @@
   @name name of the connection
   @desc additional info to be displayed below
 %>
-<div class="m-3 rounded border-red-600 border p-3 flex w-80">
-  <img class="w-16 h-16" src="https://discord.com/assets/2c21aeda16de354ba5334551a883b481.png" alt="app icon" title="Discord">
-  <div class="flex justify-start flex-col">
-    <p><%= @name %></p>
-    <p class="break-all"><%= @desc %></p>
+
+<div class="social-card bg-twitter flex flex-row">
+  <div class="mr-4">
+    <%= component "icon", icon: "twitter" %>
+
+    <div class="flex flex-col">
+      <span class="mr-1 text-sm">
+        <%= @name %>
+      </span>
+
+      <span class="mr-1 text-sm font-medium">
+        <%= @desc %>
+      </span>
+    </div>
   </div>
 </div>
