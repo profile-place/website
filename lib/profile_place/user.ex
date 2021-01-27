@@ -22,12 +22,14 @@ defmodule ProfilePlace.User do
   defmodule Data do
     defstruct [
       :age,
-      :bio
+      :desc,
+      :pronouns
     ]
 
     @type t :: %__MODULE__{
             age: integer,
-            bio: String.t()
+            desc: String.t(),
+            pronouns: String.t()
           }
   end
 end

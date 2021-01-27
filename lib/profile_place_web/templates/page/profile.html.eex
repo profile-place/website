@@ -1,23 +1,21 @@
-<h1>Hello <%= @user.display_name %></h1>
-
 <div class="items-center w-full h-screen flex flex-col mx-auto">
   <div class="container relative flex flex-row">
     <div>
       <img src="https://discord.com/assets/2c21aeda16de354ba5334551a883b481.png" draggable="false" class="shadow-md rounded" style="height: 149px; width: auto" />
     </div>
 
-    <span class="mx-10 my-2 text-2xl mb-16 font-semibold text-gray-700">
-      {user.username}
+    <span class="mx-10 my-2 text-2xl mb-16 font-semibold">
+      <%= @user.display_name %>
       <div>
-        <span class="text-lg text-gray-800">{user.description}</span>
+        <span class="text-lg"><%= @user.data.desc %></span>
       </div>
 
       <div class="mt-5 grid grid-cols-3 gap-2">
-        <span class="text-sm text-gray-800">
-              Pronouns - {user.pronouns}
+        <span class="text-sm">
+              Pronouns - <%= @user.data.pronouns %>
         </span>
 
-        <span class="text-sm text-gray-800">
+        <span class="text-sm">
               Birthday - {user.birthday}
         </span>
       </div>
@@ -30,9 +28,10 @@
       <%= for conn <- @connections do %>
         <%= component("connection",
           name: ProfilePlace.App.get_name(conn._id),
-          desc: conn.desc
+          desc: conn.desc,
+          type: ProfilePlace.App.get_name(conn._id)
         )%>
       <% end %>
     </div>
   </div>
-</div
+</div>

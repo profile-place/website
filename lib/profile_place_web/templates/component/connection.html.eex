@@ -2,18 +2,19 @@
   assigns:
   @name name of the connection
   @desc additional info to be displayed below
+  @type used to determine color and logo
 %>
 
-<div class="social-card bg-twitter flex flex-row">
-  <div class="mr-4">
-    <%= component "icon", icon: "twitter" %>
+<div class="social-card bg-<%= @type %> flex flex-row">
+  <div>
+    <%= component "icon", icon: @type %>
 
     <div class="flex flex-col">
-      <span class="mr-1 text-sm">
+      <span class="text-sm">
         <%= @name %>
       </span>
 
-      <span class="mr-1 text-sm font-medium">
+      <span class="text-sm font-medium">
         <%= @desc %>
       </span>
     </div>
