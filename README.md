@@ -23,7 +23,7 @@ Check `config/config.exs` for the environment variables you need to set
 
 ## Maintainers
 - [ravy](https://ravy.pink) (Project management and being cute)
-- [August](https://augu.dev) (Frontend)
+- [August](https://floofy.dev) (Frontend)
 - [Cyber](https://github.com/Cyber28) (Backend)
 
 ## License
