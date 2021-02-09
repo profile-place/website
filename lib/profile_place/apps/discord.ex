@@ -5,11 +5,9 @@ defmodule ProfilePlace.Apps.Discord do
     tokens = Util.find_one("token", %{_id: id})
 
     tokens =
-      if tokens.expires_in < :os.system_time(:millisecond) do
-        Map.put(tokens, :access_token, refresh(tokens.refresh_token))
-      else
-        tokens
-      end
+      if tokens.expires_in < :os.system_time(:millisecond),
+        do: Map.put(tokens, :access_token, refresh(tokens.refresh_token, id)),
+        else: tokens
 
     Task.async(fn ->
       %{status_code: 200, body: data} =
@@ -26,7 +24,7 @@ defmodule ProfilePlace.Apps.Discord do
     end)
   end
 
-  def refresh(token) do
+  def refresh(token, lookup_id) do
     payload = %{
       client_id: Application.get_env(:profile_place, :discord_id),
       client_secret: Application.get_env(:profile_place, :discord_secret),
@@ -47,10 +45,11 @@ defmodule ProfilePlace.Apps.Discord do
 
     tokens = Util.decode_to_atoms(tokens)
 
-    Mongo.find_one_and_update(:db, "token", %{refresh_token: token}, %{
+    Mongo.find_one_and_update(:db, "token", %{_id: lookup_id}, %{
       "$set" => %{
         access_token: tokens.access_token,
-        expires_in: :os.system_time(:millisecond) + tokens.expires_in * 1000
+        expires_in: :os.system_time(:millisecond) + tokens.expires_in * 1000,
+        refresh_token: tokens.refresh_token
       }
     })
 

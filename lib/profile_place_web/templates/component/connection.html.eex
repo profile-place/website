@@ -10,11 +10,11 @@
     <%= component "icon", icon: @type %>
 
     <div class="flex flex-col">
-      <span class="text-sm">
+      <span class="text-sm text-white">
         <%= @name %>
       </span>
 
-      <span class="text-sm font-medium">
+      <span class="text-sm font-medium text-white">
         <%= @desc %>
       </span>
     </div>
