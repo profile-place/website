@@ -5,11 +5,9 @@ defmodule ProfilePlace.Apps.Spotify do
     tokens = Util.find_one("token", %{_id: id})
 
     tokens =
-      if tokens.expires_in < :os.system_time(:millisecond) do
-        Map.put(tokens, :access_token, refresh(tokens.refresh_token, id))
-      else
-        tokens
-      end
+      if tokens.expires_in < :os.system_time(:millisecond),
+        do: Map.put(tokens, :access_token, refresh(tokens.refresh_token, id)),
+        else: tokens
 
     Task.async(fn ->
       %{status_code: 200, body: data} =
