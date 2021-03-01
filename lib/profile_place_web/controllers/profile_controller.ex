@@ -33,12 +33,6 @@ defmodule ProfilePlaceWeb.ProfileController do
           connections
           |> Enum.map(fn conn -> ProfilePlace.App.test_req(conn._id) end)
           |> Task.await_many()
-          |> Enum.zip(connections)
-          |> Enum.map(fn {d, c} ->
-            Map.merge(c, %{
-              desc: d
-            })
-          end)
 
         render(conn, "profile.html", %{user: user, connections: connections})
     end

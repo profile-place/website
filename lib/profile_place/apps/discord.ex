@@ -1,5 +1,5 @@
 defmodule ProfilePlace.Apps.Discord do
-  alias ProfilePlace.Util
+  alias ProfilePlace.{App, Util}
 
   def request(id) do
     tokens = Util.find_one("token", %{_id: id})
@@ -20,7 +20,7 @@ defmodule ProfilePlace.Apps.Discord do
 
       data = Util.decode_to_atoms(data)
 
-      "#{data.username}##{data.discriminator}"
+      App.package(id, "#{data.username}##{data.discriminator}")
     end)
   end
 
