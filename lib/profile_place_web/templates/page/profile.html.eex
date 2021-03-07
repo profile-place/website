@@ -20,7 +20,7 @@
         </span>
 
         <span class="text-sm">
-              Birthday - {user.birthday}
+              Birthday - <%%= @user.data.birthday %>
         </span>
       </div>
     </span>

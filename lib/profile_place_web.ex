@@ -22,6 +22,7 @@ defmodule ProfilePlaceWeb do
       use Phoenix.Controller, namespace: ProfilePlaceWeb
 
       import Plug.Conn
+      import Phoenix.LiveView.Controller
       alias ProfilePlaceWeb.Router.Helpers, as: Routes
     end
   end
@@ -39,6 +40,8 @@ defmodule ProfilePlaceWeb do
       # Import component function from utils
       import ProfilePlace.Util, only: [component: 2]
 
+      import Phoenix.LiveView.Helpers
+
       # Include shared imports and aliases for views
       unquote(view_helpers())
     end
@@ -50,6 +53,7 @@ defmodule ProfilePlaceWeb do
 
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 
