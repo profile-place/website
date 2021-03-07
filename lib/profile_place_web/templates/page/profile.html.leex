@@ -29,7 +29,7 @@
   <div class="container relative flex flex-row">
     <div class="pp-row container grid grid-cols-3 gap-3 mx-auto my-16">
       <%= for conn <- @connections do %>
-        <%= component("connection",
+        <%= live_component(@socket, ConnectionComponent,
           name: ProfilePlace.App.stylized(conn._id),
           desc: conn.desc,
           type: ProfilePlace.App.get_name(conn._id)

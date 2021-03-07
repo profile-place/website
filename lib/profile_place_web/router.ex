@@ -33,7 +33,7 @@ defmodule ProfilePlaceWeb.Router do
     get "/join", PageController, :join
     get "/profile", PageController, :profile
     get "/slugmanagementpage", PageController, :slugmanagementpage
-    get "/@:id", ProfileController, :show
+    live "/@:id", ProfileControllerLive, :show
   end
 
   scope "/api", ProfilePlaceWeb do

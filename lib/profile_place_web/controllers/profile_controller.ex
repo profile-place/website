@@ -1,5 +1,6 @@
-defmodule ProfilePlaceWeb.ProfileController do
+defmodule ProfilePlaceWeb.ProfileControllerLive do
   use ProfilePlaceWeb, :controller
+  use Phoenix.LiveView
 
   alias ProfilePlace.{Slug, Util}
 
@@ -34,7 +35,7 @@ defmodule ProfilePlaceWeb.ProfileController do
           |> Enum.map(fn conn -> ProfilePlace.App.test_req(conn._id) end)
           |> Task.await_many()
 
-        render(conn, "profile.html", %{user: user, connections: connections})
+        live_render(conn, "profile.html", %{user: user, connections: connections})
     end
   end
 end
