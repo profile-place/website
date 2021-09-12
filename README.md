@@ -1,17 +1,20 @@
 # profile.place
-> **Website monorepo for [profile.place](https://profile.place), written in Elixir**
+> **Website backend for [profile.place](https://profile.place), written in Elixir**
 
 ## Development
 ### Requirements
-- Elixir v11+
-- MongoDB v3 or v4
-- Redis v5+
+- Elixir
+- MongoDB
+- Redis
 
 ### Process (Locally)
 - [Fork](https://github.com/profile-place/website/fork) the repository
 - Clone the forked repository
 - Start a terminal session in the directory and run `mix deps.get` to get the elixir dependencies
   - If you get a weird Make error on Windows, make sure Make is installed properly
+- Before you run **profile.place**, you must run the following commands to add environment variabels to your instance:
+  - Unix: `for /F %A in (.env) do SET %A && iex -S mix phx.server`
+  - Windows: `export $(cat .env | xargs) && iex -S mix phx.server`
 - Run `mix phx.server` or `iex -S mix phx.server` if you want the iex session
 - Open the tab [here](http://localhost:4000)
 

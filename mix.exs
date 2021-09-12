@@ -33,20 +33,20 @@ defmodule ProfilePlace.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.3"},
-      {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.2.0"},
-      {:telemetry_metrics, "~> 0.4"},
+      {:phoenix, "~> 1.5.12"},
+      {:phoenix_html, "~> 3.0.3"},
+      {:phoenix_live_reload, "~> 1.3.3", only: :dev},
+      {:phoenix_live_dashboard, "~> 0.5.1"},
+      {:telemetry_metrics, "~> 0.6.1"},
       {:telemetry_poller, "~> 0.4"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
+      {:jason, "~> 1.2.2"},
+      {:plug_cowboy, "~> 2.5.2"},
       {:mongodb, "~> 0.5.1"},
-      {:snowflake, "~> 1.0.0"},
-      {:redix, ">= 0.0.0"},
-      {:argon2_elixir, "~> 2.3.0"},
-      {:dotenv, "~> 3.0.0"},
-      {:httpoison, "~> 1.7.0"}
+      {:snowflake, "~> 1.0.4"},
+      {:redix, "~> 1.1.4"},
+      {:argon2_elixir, "~> 2.4.0"},
+      {:dotenv, "~> 3.1.0"},
+      {:httpoison, "~> 1.8.0"}
     ]
   end
 
